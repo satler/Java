@@ -1,0 +1,27 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+	<session-factory>
+
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
+        <property name="connection.url">jdbc:oracle:thin:@172.22.0.99:1521:metal</property>
+        <property name="connection.username">C##geo</property>
+        <property name="connection.password">geo</property>
+        <property name="connection.pool_size">1</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.spatial.dialect.oracle.OracleSpatial10gDialect</property>
+
+        <property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+
+        <property name="hbm2ddl.auto">none</property>
+
+		<mapping class="entidades.Rua"/>
+						
+	</session-factory>
+
+</hibernate-configuration>
