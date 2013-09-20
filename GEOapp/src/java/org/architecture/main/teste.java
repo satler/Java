@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.arquitetura.principal;
+package org.architecture.main;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.arquitetura.GEO.ManipulaLinha;
+import org.architecture.GEO.HandleLine;
+import org.architecture.GEO.HandlePoint;
+import org.architecture.GEO.HandlePolygon;
 
 /**
  *
@@ -42,9 +44,15 @@ public class teste extends HttpServlet {
             out.println("<title>Servlet teste</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("tentando...");
-            ManipulaLinha ml = new ManipulaLinha();
-            ml.insertLine();
+            out.println("tentando...<br>");
+//            HandleLine ml = new HandleLine();
+//            int id = ml.insertLinebyCoordinates();
+//            ml.deleteLine(6);
+//            out.println("o ultimo inserido foi "+id);
+//            HandlePolygon p = new HandlePolygon();
+//            p.insertPolygonbyString();
+            HandlePoint pt = new HandlePoint();
+            pt.insertPoint();
             out.println("</body>");
             out.println("</html>");
         } finally {            

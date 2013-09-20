@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.arquitetura.entidades;
+package org.architecture.entities;
 
 import com.vividsolutions.jts.geom.Geometry;
 import java.io.Serializable;
@@ -17,7 +17,7 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "GEOMETRIA")
-public class Rua extends Base implements Serializable {
+public class EntidadePadrao extends Base implements Serializable {
 
     @Id
     @SequenceGenerator(name = "GQO_SEQ", sequenceName = "SEQ_GEO", allocationSize = 1)

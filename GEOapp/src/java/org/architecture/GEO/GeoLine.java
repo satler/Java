@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.arquitetura.GEO;
+package org.architecture.GEO;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
@@ -18,7 +18,7 @@ import com.vividsolutions.jts.io.WKTReader;
  *
  * @author satler
  */
-public class Line {
+public class GeoLine {
     
     public LineString createLinebyCoordinates( Coordinate[] coordenadas, int SRID){
         
