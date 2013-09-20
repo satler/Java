@@ -20,7 +20,7 @@
 
         <property name="hbm2ddl.auto">none</property>
 
-		<mapping class="entidades.Rua"/>
+		<mapping class="org.arquitetura.entidades.Rua"/>
 						
 	</session-factory>
 

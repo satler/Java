@@ -11,9 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.arquitetura.DAO.DAOSpringConnect;
-import org.arquitetura.GEO.Line;
-import org.arquitetura.entidades.Rua;
+import org.arquitetura.GEO.ManipulaLinha;
 
 /**
  *
@@ -44,7 +42,9 @@ public class teste extends HttpServlet {
             out.println("<title>Servlet teste</title>");            
             out.println("</head>");
             out.println("<body>");
-            
+            out.println("tentando...");
+            ManipulaLinha ml = new ManipulaLinha();
+            ml.insertLine();
             out.println("</body>");
             out.println("</html>");
         } finally {            
@@ -52,29 +52,6 @@ public class teste extends HttpServlet {
         }
     }
 
-        public boolean testar(){
-   
-                ApplicationContext ctx = new ClassPathXmlApplicationContext("conf/conf.xml");
-
-        DAOSpringConnect banco = (DAOSpringConnect) ctx.getBean("banco_dados");
-
-            Rua rua = new Rua();
-    //		Coordinate p1 = new Coordinate(12, 0);
-    //		Coordinate p2 = new Coordinate(15, 20);
-    //        Coordinate p3 = new Coordinate(20, 20);
-    //		Coordinate[] p = {p1,p2,p3};
-            Line line = new Line();
-    //        LineString geom = null;
-
-    //		rua.setTheGeom(line.createLinebyCoordinates(p, 4326));
-
-            rua.setNome("rua Spring WKT3");
-            rua.setTheGeom(line.createLineByString("LINESTRING (30 10, 10 30, 40 40)", 4326));
-
-            banco.salvar(rua);
-            
-            return true;
-    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP

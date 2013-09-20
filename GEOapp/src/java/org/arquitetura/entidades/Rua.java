@@ -9,7 +9,9 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import org.hibernate.annotations.Type;
 
@@ -18,7 +20,8 @@ import org.hibernate.annotations.Type;
 public class Rua extends Base implements Serializable {
 
     @Id
-	@GeneratedValue
+    @SequenceGenerator(name = "GQO_SEQ", sequenceName = "SEQ_GEO", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GQO_SEQ")  
 	int id;
     
 	private String nome;
