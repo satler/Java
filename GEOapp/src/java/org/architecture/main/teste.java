@@ -6,6 +6,7 @@ package org.architecture.main;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.architecture.GEO.HandleLine;
 import org.architecture.GEO.HandlePoint;
 import org.architecture.GEO.HandlePolygon;
+import org.architecture.entities.EntidadePadrao;
 
 /**
  *
@@ -45,14 +47,16 @@ public class teste extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("tentando...<br>");
-//            HandleLine ml = new HandleLine();
+            HandleLine ml = new HandleLine();
+            String geo = ml.convertGEO(43);
+            out.println(geo);
 //            int id = ml.insertLinebyCoordinates();
-//            ml.deleteLine(6);
+//            ml.deleteLine(2);
 //            out.println("o ultimo inserido foi "+id);
 //            HandlePolygon p = new HandlePolygon();
 //            p.insertPolygonbyString();
-            HandlePoint pt = new HandlePoint();
-            pt.insertPoint();
+//            HandlePoint pt = new HandlePoint();
+//            pt.insertPoint();
             out.println("</body>");
             out.println("</html>");
         } finally {            

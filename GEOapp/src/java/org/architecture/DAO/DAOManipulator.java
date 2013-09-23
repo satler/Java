@@ -23,7 +23,7 @@ public abstract class DAOManipulator<T extends Base> implements iDAO<T> {
         this.sessionFactory = this.getSessionFactory();
 		this.session = this.sessionFactory.openSession();
 		this.transaction = this.session.beginTransaction();
-        return null;
+        return this.session;
         
     }
     public void closeSession(){
@@ -31,7 +31,8 @@ public abstract class DAOManipulator<T extends Base> implements iDAO<T> {
     }
     
 	@Override
-	public T loadGEOEntitie( Integer id ) {
+	public T loadGEOEntity( Integer id ) {
+        
 		for (T entidade : this.getList()) {
 			if (entidade.getId() == id) {
 				return entidade;
@@ -43,15 +44,23 @@ public abstract class DAOManipulator<T extends Base> implements iDAO<T> {
 
 	@Override
 	public void deleteGEO( Integer id ) {
-		T toDelete = this.loadGEOEntitie(id);
+		T toDelete = this.loadGEOEntity(id);
+        System.out.println("chegou "+toDelete );
 		if(toDelete != null){
-			this.getList().remove(toDelete);
+			this.OpenSession();
+            this.session.delete(toDelete);
+            this.transaction.commit();
+            this.closeSession();
 		}
 	}
 
 	@Override
 	public void deleteGEO( T t ) {
-		this.getList().remove(t);
+        
+        this.OpenSession();
+        this.session.delete(t);
+        this.transaction.commit();
+        this.closeSession();
 
 	}
 
@@ -62,7 +71,6 @@ public abstract class DAOManipulator<T extends Base> implements iDAO<T> {
 
 	@Override
 	public Serializable saveGEO( T t ) {
-        System.out.println("passou");
         this.OpenSession();
         Serializable id = this.session.save(t);
         this.transaction.commit();

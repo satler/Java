@@ -11,12 +11,13 @@ import java.util.List;
 import org.architecture.DAO.DAOManipulator;
 import org.architecture.entities.Base;
 import org.architecture.entities.EntidadePadrao;
+import org.hibernate.Session;
 
 /**
  *
  * @author satler
  */
-public class HandlePoint extends DAOManipulator<Base>{
+public class HandlePoint extends DAOManipulator<EntidadePadrao>{
 
      public int insertPoint(){
         
@@ -35,8 +36,12 @@ public class HandlePoint extends DAOManipulator<Base>{
     }
      
     @Override
-    public List<Base> getList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<EntidadePadrao> getList() {
+    
+        Session sessao = this.OpenSession();
+        List<EntidadePadrao> lista = sessao.createCriteria(EntidadePadrao.class).list();
+        this.closeSession();
+        return lista;
     }
     
 }

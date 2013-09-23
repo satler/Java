@@ -6,18 +6,17 @@ package org.architecture.GEO;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
-import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.geom.impl.CoordinateArraySequence;
 import java.util.List;
 import org.architecture.DAO.DAOManipulator;
-import org.architecture.entities.Base;
 import org.architecture.entities.EntidadePadrao;
+import org.hibernate.Session;
 
 /**
  *
  * @author satler
  */
-public class HandlePolygon extends DAOManipulator<Base>{
+public class HandlePolygon extends DAOManipulator<EntidadePadrao>{
 
     public int insertPolygonbyCoordinates(){
         
@@ -47,7 +46,7 @@ public class HandlePolygon extends DAOManipulator<Base>{
             EntidadePadrao rua = new EntidadePadrao();
             GeoPolygon polygon = new GeoPolygon();
             rua.setNome("geo pol String oracle 11g");
-            rua.setTheGeom(polygon.createPolygonByString("POLYGON((10 10, 20 10, 20 20, 10 20, 10 10),\n" +
+            rua.setTheGeom(polygon.createGEOByString("POLYGON((10 10, 20 10, 20 20, 10 20, 10 10),\n" +
                 "(13 13, 17 13, 17 17, 13 17, 13 13))", 4326));
 
             int resultado = (int) this.saveGEO(rua);
@@ -58,8 +57,12 @@ public class HandlePolygon extends DAOManipulator<Base>{
     }
         
     @Override
-    public List<Base> getList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<EntidadePadrao> getList() {
+    
+        Session sessao = this.OpenSession();
+        List<EntidadePadrao> lista = sessao.createCriteria(EntidadePadrao.class).list();
+        this.closeSession();
+        return lista;
     }
     
 }

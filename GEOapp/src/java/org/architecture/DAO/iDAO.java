@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface iDAO <T extends Base> {
     
-    public T loadGEOEntitie(Integer entidade);
+    public T loadGEOEntity(Integer entidade);
 	
 	public Serializable saveGEO(T t);
 	

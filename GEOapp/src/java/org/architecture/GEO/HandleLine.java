@@ -5,18 +5,16 @@
 package org.architecture.GEO;
 
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.LineString;
-import java.io.Serializable;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import org.architecture.DAO.DAOManipulator;
-import org.architecture.entities.Base;
 import org.architecture.entities.EntidadePadrao;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 
-public class HandleLine extends DAOManipulator<Base>{
-
+public class HandleLine extends DAOManipulator<EntidadePadrao>{
+    
     public int insertLinebyCoordinates(){
         
         try{
@@ -46,7 +44,7 @@ public class HandleLine extends DAOManipulator<Base>{
             EntidadePadrao rua = new EntidadePadrao();
             GeoLine line = new GeoLine();
             rua.setNome("geo String oracle 11g");
-            rua.setTheGeom(line.createLineByString("LINESTRING (30 10, 10 30, 40 40)", 4326));
+            rua.setTheGeom(line.createGEOByString("LINESTRING (30 10, 10 30, 40 40)", 4326));
 
             int resultado = (int) this.saveGEO(rua);
             return resultado;
@@ -55,7 +53,7 @@ public class HandleLine extends DAOManipulator<Base>{
         }
     }
     
-    public int deleteLine( int ID ){
+    public int deleteLine( Integer ID ){
         
         try{
             this.deleteGEO( ID );
@@ -64,14 +62,21 @@ public class HandleLine extends DAOManipulator<Base>{
             return 0;
         }
     }
+    
+    public String convertGEO( int id ) throws MalformedURLException, IOException{
+        
+         GeoLine linha = new GeoLine();
+         linha.mais();
+         return null;
+    }
 
     @Override
-    public List<Base> getList() {
-        return null;
-//        Session sessao = this.OpenSession();
-//        Criteria criteria = sessao.createCriteria(EntidadePadrao.class);  
-//        List<EntidadePadrao> lista = criteria.list();
-//        return lista;
+    public List<EntidadePadrao> getList() {
+        
+        Session sessao = this.OpenSession();
+        List<EntidadePadrao> lista = sessao.createCriteria(EntidadePadrao.class).list();
+        this.closeSession();
+        return lista;
     }
     
 }

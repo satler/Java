@@ -17,7 +17,7 @@ import com.vividsolutions.jts.geom.impl.CoordinateArraySequence;
  *
  * @author satler
  */
-public class GEOPoint {
+public class GEOPoint extends GEO{
     
     public Point createPoint( double x, double y, int SRID){
         

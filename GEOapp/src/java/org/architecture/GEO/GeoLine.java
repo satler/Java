@@ -6,19 +6,16 @@ package org.architecture.GEO;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
-import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.PrecisionModel;
 import com.vividsolutions.jts.geom.impl.CoordinateArraySequence;
-import com.vividsolutions.jts.io.ParseException;
-import com.vividsolutions.jts.io.WKTReader;
 
 /**
  *
  * @author satler
  */
-public class GeoLine {
+public class GeoLine extends GEO{
     
     public LineString createLinebyCoordinates( Coordinate[] coordenadas, int SRID){
         
@@ -31,21 +28,5 @@ public class GeoLine {
 		theGeom.setSRID(SRID);
         return theGeom;
     }
-    
-    public Geometry createLineByString ( String geometry, int SRID ){
         
-        WKTReader fromText = new WKTReader(new GeometryFactory(new 
-        PrecisionModel(PrecisionModel.FLOATING), SRID)); 
-
-        Geometry geom = null; 
-        try { 
-            geom = fromText.read(geometry);
-        } catch (ParseException ex) {
-            System.out.println("Erro para converter "+ex);
-        }
-        geom.setSRID(SRID);
-        return geom;
-    }
-    
-    
 }
